@@ -1,0 +1,7 @@
+.env
+*.pdf
+__pycache__/
+.ipynb_checkpoints
+.DS_Store
+.venv
+data/war_and_peace.txt

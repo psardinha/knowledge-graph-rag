@@ -1,0 +1,25 @@
+services:
+  neo4j:
+    image: neo4j:2026.10.2
+    container_name: graphrag-neo4j
+    restart: unless-stopped
+
+    ports:
+      - "7474:7474"
+      - "7687:7687"
+
+    environment:
+      NEO4J_AUTH: ${NEO4J_USER:-neo4j}/${NEO4J_PASSWORD:?NEO4J_PASSWORD must be set}
+      NEO4J_PLUGINS: '["graph-data-science"]'
+
+    volumes:
+      - neo4j_data:/data
+      - neo4j_logs:/logs
+      - neo4j_import:/var/lib/neo4j/import
+      - neo4j_plugins:/plugins
+
+volumes:
+  neo4j_data:
+  neo4j_logs:
+  neo4j_import:
+  neo4j_plugins:
